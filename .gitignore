@@ -1,3 +1,5 @@
+/Alzheimer_s Dataset
+*.gitignore
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
