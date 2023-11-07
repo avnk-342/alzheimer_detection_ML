@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './Hero.css'
+import UploadServices from "../Services/FileUpload.js"
 
 const Hero = () => {
   return (
