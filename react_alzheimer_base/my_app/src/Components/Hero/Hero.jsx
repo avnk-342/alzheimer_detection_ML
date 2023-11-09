@@ -14,12 +14,26 @@ const Hero = () => {
 
   const handleAPI = () => {
     //API call
-    const url = ''
+    // const url = ''
     const formData = new FormData()
-    formData.append('image', image )
-    axios.post(url, formData).then((res)=>{
-      console.log(res)
-    })
+    formData.append('file', image )
+    // axios.post(url, formData).then((res)=>{
+    //   console.log(res)
+    // })
+
+    axios({
+      method: 'post',
+      url: 'http://127.0.0.1:8000',
+      data: formData,
+      headers: {
+        'Accept' : 'application/json',
+        'Content-Type': 'multipart/form-data'
+      },
+    }).then(response => {
+        console.log(response);
+    }).catch(error => {
+      console.error(error);
+    });
   }
 
   return (
@@ -29,7 +43,7 @@ const Hero = () => {
                 <h1>Check your result <span>NOW!</span></h1>
                 <p>please upload your brain MRI scan below in jpeg, png or jpg format</p>
                 {/* <label htmlFor="upload-image">Upload</label> */}
-                <input type="file" accept='image/jpeg, image/png, image/jpg' value={image} onChange={handelChange}/>
+                <input type="file" accept='image/jpeg, image/png, image/jpg' onChange={handelChange}/>
                 <button type='submit' name='upload' onClick={handleAPI}>Upload</button>
                 
             </div>
