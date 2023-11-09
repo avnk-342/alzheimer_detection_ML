@@ -1,6 +1,8 @@
 /Alzheimer_s Dataset
 /Alzheimer_Dataset
 /output
+/alzheimer_FastAPI/output
+/alzheimer_FastAPI/.venv
 *.gitignore
 # Byte-compiled / optimized / DLL files
 __pycache__/
