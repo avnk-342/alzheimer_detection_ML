@@ -14,7 +14,7 @@ const Navbar = () => {
             <li>Contact Us</li>
         </ul>
         <div className="login-button">
-            <Link to='/login'><button>Login/Sign-Up</button></Link> 
+            <Link to='/login' style={{textDecoration:'none'}}><button>Login/Sign-Up</button></Link> 
         </div>
     </div>
   )

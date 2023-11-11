@@ -6,7 +6,14 @@ import axios from 'axios'
 
 const Hero = () => {
   const [image, setImage] = useState('')
+  const [ans] = useState('');
   
+  function display(str) {
+    document.getElementById('results-span').style.visibility='visible';
+    document.getElementById('results-span').innerHTML = "Result: " + str;
+
+  }
+
   const handelChange = (e) => {
     console.log(e.target.files[0])
     setImage(e.target.files[0])
@@ -14,27 +21,28 @@ const Hero = () => {
 
   const handleAPI = () => {
     //API call
-    // const url = ''
     const formData = new FormData()
     formData.append('file', image )
-    // axios.post(url, formData).then((res)=>{
-    //   console.log(res)
-    // })
 
     axios({
       method: 'post',
-      url: 'http://127.0.0.1:8000',
+      url: 'http://127.0.0.1:8000', //url of the server
       data: formData,
       headers: {
         'Accept' : 'application/json',
         'Content-Type': 'multipart/form-data'
       },
     }).then(response => {
-        console.log(response);
+        const ans=response.data["Msg"];
+        display(ans);
+        console.log(ans);
+        return ans;
     }).catch(error => {
       console.error(error);
     });
+    
   }
+  
 
   return (
     <div className='main-div'>
@@ -42,10 +50,10 @@ const Hero = () => {
             <div className="container2">
                 <h1>Check your result <span>NOW!</span></h1>
                 <p>please upload your brain MRI scan below in jpeg, png or jpg format</p>
-                {/* <label htmlFor="upload-image">Upload</label> */}
-                <input type="file" accept='image/jpeg, image/png, image/jpg' onChange={handelChange}/>
+                <label htmlFor="upload-image">Browse Images</label>
+                <input type="file" accept='image/jpeg, image/png, image/jpg' onChange={handelChange} id='upload-image'/>
                 <button type='submit' name='upload' onClick={handleAPI}>Upload</button>
-                
+                <span id='results-span' style={{visibility :'hidden'}}>ans {ans}</span>
             </div>
         </div>
     </div>

@@ -3,6 +3,7 @@
 /output
 /alzheimer_FastAPI/output
 /alzheimer_FastAPI/.venv
+/alzheimer_FastAPI/*.jpg
 *.gitignore
 # Byte-compiled / optimized / DLL files
 __pycache__/

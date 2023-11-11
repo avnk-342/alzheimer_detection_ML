@@ -39,11 +39,11 @@
     text-decoration: underline;
 }
 
-/* .container2 input{
+.container2 input{
     display: none;
-} */
+}
 
-.container2 label{
+.container2 label ,button{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,4 +53,18 @@
     border-radius: 30px;
     cursor: pointer;
     border: 1px solid black;
+}
+
+.container2 button{
+    background-color: green;
+    color: black;
+    font-size: 16px;
+}
+
+#results-span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: 500;
 }
