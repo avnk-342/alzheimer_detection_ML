@@ -8,14 +8,14 @@ const Hero = () => {
   const [image, setImage] = useState('')
   const [ans] = useState('');
   
-  function display(str) {
-    document.getElementById('results-span').style.visibility='visible';
-    document.getElementById('results-span').innerHTML = "Result: " + str;
+  // function display(str) {
+  //   document.getElementById('results-span').style.visibility='visible';
+  //   document.getElementById('results-span').innerHTML = "Result: " + str;
 
-  }
+  // }
 
   const handelChange = (e) => {
-    console.log(e.target.files[0])
+    console.log(e.target.files[0]) //optional
     setImage(e.target.files[0])
   }
 
@@ -26,17 +26,18 @@ const Hero = () => {
 
     axios({
       method: 'post',
-      url: 'http://127.0.0.1:8000', //url of the server
+      url: 'http://localhost:8080', //url of the server
       data: formData,
       headers: {
         'Accept' : 'application/json',
         'Content-Type': 'multipart/form-data'
       },
     }).then(response => {
-        const ans=response.data["Msg"];
-        display(ans);
-        console.log(ans);
-        return ans;
+        // const ans=response.data["Msg"];
+        // display(ans);
+        // console.log(ans);
+        // return ans;
+
     }).catch(error => {
       console.error(error);
     });
@@ -51,7 +52,7 @@ const Hero = () => {
                 <h1>Check your result <span>NOW!</span></h1>
                 <p>please upload your brain MRI scan below in jpeg, png or jpg format</p>
                 <label htmlFor="upload-image">Browse Images</label>
-                <input type="file" accept='image/jpeg, image/png, image/jpg' onChange={handelChange} id='upload-image'/>
+                <input type="file" accept='image/jpeg, image/png, image/jpg' onChange={handelChange} id='upload-image' name='upload-image'/>
                 <button type='submit' name='upload' onClick={handleAPI}>Upload</button>
                 <span id='results-span' style={{visibility :'hidden'}}>ans {ans}</span>
             </div>
