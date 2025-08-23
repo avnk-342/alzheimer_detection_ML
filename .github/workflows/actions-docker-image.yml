@@ -13,6 +13,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set repo name to lowercase
+        run: echo "REPO_NAME=$(echo ${{ github.event.repository.name }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
@@ -25,7 +28,7 @@ jobs:
           context: ./alzheimer_Fastapi  # Specifies the build context is the 'api' sub-directory
           file: ./alzheimer_Fastapi/dockerfile # Specifies the path to the API's Dockerfile
           push: true
-          tags: ${{ secrets.DHUB_USERN }}/${{ github.event.repository.name }}-backend:latest
+          tags: ${{ secrets.DHUB_USERN }}/${{ env.REPO_NAME }}-backend:latest
 
   # --- Second Job: Build and push the WebApp image ---
   build-and-push-webapp:
@@ -34,16 +37,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set repo name to lowercase
+        run: echo "REPO_NAME=$(echo ${{ github.event.repository.name }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DHUB_USERN }}
           password: ${{ secrets.DHUB_TOKEN }}
 
-      - name: Build and push WebApp image 🚀
+      - name: Build and push WebApp image
         uses: docker/build-push-action@v5
         with:
           context: ./react_base # Specifies the build context is the 'webapp' sub-directory
           file: ./react_base/dockerfile # Specifies the path to the WebApp's Dockerfile
           push: true
-          tags: ${{ secrets.DHUB_USERN }}/${{ github.event.repository.name }}-frontend:latest
+          tags: ${{ secrets.DHUB_USERN }}/${{ env.REPO_NAME }}-frontend:latest
