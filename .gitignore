@@ -4,7 +4,8 @@
 /alzheimer_FastAPI/output
 /alzheimer_FastAPI/.venv
 /alzheimer_FastAPI/*.jpg
-/react_alzheimer_base/*/node_modules
+/react_base/node_modules
+/alzheimer_FastAPI/image/
 *.gitignore
 # Byte-compiled / optimized / DLL files
 __pycache__/

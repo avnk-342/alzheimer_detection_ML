@@ -1,9 +1,8 @@
+import keras
 import uvicorn
 from fastapi import FastAPI, Request, Form, UploadFile, File
 import uuid
 import numpy as np
-import pandas as pd
-import pickle
 from fastapi.middleware.cors import CORSMiddleware
 from keras.preprocessing.image import load_img, img_to_array
 
@@ -21,8 +20,8 @@ app.add_middleware(
 )
 
 
-# Loading model using pickle
-my_model = pickle.load(open('model.pkl','rb'))
+# Loading model
+my_model = keras.models.load_model("model.keras")
 
 
 

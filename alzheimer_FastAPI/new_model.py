@@ -52,4 +52,4 @@ cnn.add(tf.keras.layers.Dense(units = 4, activation = 'softmax'))
 cnn.compile(optimizer = 'adam', loss = 'sparse_categorical_crossentropy', metrics = ['accuracy'])
 history = cnn.fit(train_set, validation_data = val_set, epochs = 15,batch_size=32,verbose=1 )
 
-pickle.dump(cnn, open('model.pkl', 'wb'))
+cnn.save("model.keras")

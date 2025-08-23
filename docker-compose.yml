@@ -1,0 +1,15 @@
+
+services:
+  backend:
+    build: ./alzheimer_FastAPI/
+    container_name: backend_services
+    ports:
+      - "8000:8000"
+  
+  frontend:
+    build: ./react_base/
+    container_name: frontend_services
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend

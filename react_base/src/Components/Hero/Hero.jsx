@@ -8,11 +8,11 @@ const Hero = () => {
   const [image, setImage] = useState('')
   const [ans] = useState('');
   
-  // function display(str) {
-  //   document.getElementById('results-span').style.visibility='visible';
-  //   document.getElementById('results-span').innerHTML = "Result: " + str;
+  function display(str) {
+    document.getElementById('results-span').style.visibility='visible';
+    document.getElementById('results-span').innerHTML = "Result: " + str;
 
-  // }
+  }
 
   const handelChange = (e) => {
     console.log(e.target.files[0]) //optional
@@ -26,17 +26,17 @@ const Hero = () => {
 
     axios({
       method: 'post',
-      url: 'http://localhost:8080', //url of the server
+      url: 'http://localhost:8000', //url of the server
       data: formData,
       headers: {
         'Accept' : 'application/json',
         'Content-Type': 'multipart/form-data'
       },
     }).then(response => {
-        // const ans=response.data["Msg"];
-        // display(ans);
-        // console.log(ans);
-        // return ans;
+        const ans=response.data["Msg"];
+        display(ans);
+        console.log(ans);
+        return ans;
 
     }).catch(error => {
       console.error(error);
