@@ -25,8 +25,8 @@ jobs:
       - name: Build and push API image
         uses: docker/build-push-action@v5
         with:
-          context: ./alzheimer_Fastapi  # Specifies the build context is the 'api' sub-directory
-          file: ./alzheimer_Fastapi/dockerfile # Specifies the path to the API's Dockerfile
+          context: ./alzheimer_FastAPI  # Specifies the build context is the 'api' sub-directory
+          file: ./alzheimer_FastAPI/dockerfile # Specifies the path to the API's Dockerfile
           push: true
           tags: ${{ secrets.DHUB_USERN }}/${{ env.REPO_NAME }}-backend:latest
 
