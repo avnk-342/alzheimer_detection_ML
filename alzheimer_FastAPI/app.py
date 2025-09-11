@@ -1,21 +1,21 @@
 import keras
-import uvicorn
+# import uvicorn
 from fastapi import FastAPI, UploadFile, File
 import numpy as np
-from fastapi.middleware.cors import CORSMiddleware
+# from fastapi.middleware.cors import CORSMiddleware
 from keras.preprocessing.image import img_to_array
 from PIL import Image
 
 app = FastAPI()
 
 # application can contact with api if it is running of following port
-origins = [
-    'http://localhost:8080'  
-]
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-)
+# origins = [
+#     'http://localhost:8080'  
+# ]
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=origins,
+# )
 
 
 # Loading model

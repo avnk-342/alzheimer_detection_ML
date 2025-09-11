@@ -1,5 +1,5 @@
 const express = require('express');
-var cors = require('cors');
+// var cors = require('cors'); // commented out because vercel doesn't need it
 const multer = require('multer');
 const axios = require('axios');
 const FormData = require('form-data') ;
@@ -7,10 +7,10 @@ const FormData = require('form-data') ;
 
 const app = express();
 
-var corsOptions = {
-    origin: 'http://localhost:3000'
-}
-app.use(cors(corsOptions))
+// var corsOptions = {
+//     origin: 'http://localhost:3000'
+// }
+// app.use(cors(corsOptions))
 
 const upload = multer({storage: multer.memoryStorage()})
 
@@ -18,8 +18,16 @@ const upload = multer({storage: multer.memoryStorage()})
 
 
 
-app.post('/',upload.single('uploadImage'),async (req,res)=>{
+app.post('/api/express/upload',upload.single('uploadImage'),async (req,res)=>{
     try {
+
+        //vercel required *****
+        const fastApiUrl = process.env.FASTAPI_URL; 
+        if (!fastApiUrl) {
+            throw new Error("FASTAPI_URL environment variable not set!");
+        }
+        /* ********* */
+
         if(!req.file){
             return res.status(400).send('No file Uploaded');
         }
@@ -31,7 +39,8 @@ app.post('/',upload.single('uploadImage'),async (req,res)=>{
         });
 
         const apiResponse = await axios.post(
-            'http://localhost:8000', 
+            // 'http://localhost:8000', 
+            fastApiUrl, // vercel requirement
             formData, 
             { 
                 headers: {
@@ -48,9 +57,9 @@ app.post('/',upload.single('uploadImage'),async (req,res)=>{
 })
 
 
-const port =8080
-app.listen(port, ()=>{
-    console.log(`listerning to port: ${port}`)
-})
+// const port =8080
+// app.listen(port, ()=>{
+//     console.log(`listerning to port: ${port}`)
+// })
 
 module.exports = app; //vercel configuration

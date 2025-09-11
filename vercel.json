@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "express/package.json",
+      "use": "@vercel/node",
+      "config": { "includeFiles": ["app.js"] }
+    },
+    {
+      "src": "alzheimer_FastAPI/app.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "react_base/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "build" }
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/express/(.*)",
+      "destination": "/express/app.js"
+    },
+    {
+      "source": "/api/fastapi/(.*)",
+      "destination": "/alzheimer_FastAPI/app.py"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "react_base/build/index.html"
+    }
+  ]
+}
