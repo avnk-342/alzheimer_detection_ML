@@ -6,6 +6,7 @@
 /alzheimer_FastAPI/*.jpg
 /react_base/node_modules
 /alzheimer_FastAPI/image/
+/express/node_modules
 *.gitignore
 # Byte-compiled / optimized / DLL files
 __pycache__/

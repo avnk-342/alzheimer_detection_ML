@@ -1,33 +1,50 @@
-const express = require('express')
-const app = express()
-var cors = require('cors')
-const multer = require('multer')
+const express = require('express');
+var cors = require('cors');
+const multer = require('multer');
+const axios = require('axios');
+const FormData = require('form-data') ;
 
+
+const app = express();
 
 var corsOptions = {
-    origin: 'http://192.168.0.106:3000'
+    origin: 'http://localhost:3000'
 }
-app.use(cors())
+app.use(cors(corsOptions))
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        return cb(null, "./uploads")
-    },
-    filename: (req, file, cb) => {
-        console.log(file)
-        return cb(null, `${Date.now()}_${file.originalname}`)
+const upload = multer({storage: multer.memoryStorage()})
+
+
+
+
+
+app.post('/',upload.single('uploadImage'),async (req,res)=>{
+    try {
+        if(!req.file){
+            return res.status(400).send('No file Uploaded');
+        }
+
+        const formData = new FormData();
+        formData.append('file', req.file.buffer, {
+            filename: req.file.originalname,
+            contentType: req.file.mimetype
+        });
+
+        const apiResponse = await axios.post(
+            'http://localhost:8000', 
+            formData, 
+            { 
+                headers: {
+                    'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
+                },
+            }
+        );
+        res.json(apiResponse.data);
     }
-})
-
-const upload = multer({storage: storage})
-
-
-
-
-
-app.post('/', upload.single('file') ,(req,res)=>{
-    console.log(req)
-    console.log(res)
+    catch(error){
+        console.log(error.message)
+        res.status(400).json({message: "Internal server error"})
+    }
 })
 
 
