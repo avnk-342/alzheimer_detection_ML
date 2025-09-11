@@ -1,10 +1,9 @@
 import keras
 import uvicorn
 from fastapi import FastAPI, UploadFile, File
-import uuid
 import numpy as np
 from fastapi.middleware.cors import CORSMiddleware
-from keras.preprocessing.image import load_img, img_to_array
+from keras.preprocessing.image import img_to_array
 from PIL import Image
 
 app = FastAPI()
