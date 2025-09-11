@@ -48,9 +48,9 @@ app.post('/',upload.single('uploadImage'),async (req,res)=>{
 })
 
 
-// const port =8080
-// app.listen(port, ()=>{
-//     console.log(`listerning to port: ${port}`)
-// })
+const port =8080
+app.listen(port, ()=>{
+    console.log(`listerning to port: ${port}`)
+})
 
 module.exports = app; //vercel configuration
