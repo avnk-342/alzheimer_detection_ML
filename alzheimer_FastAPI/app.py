@@ -1,5 +1,5 @@
 import keras
-# import uvicorn
+import uvicorn
 from fastapi import FastAPI, UploadFile, File
 import numpy as np
 # from fastapi.middleware.cors import CORSMiddleware
@@ -19,7 +19,7 @@ app = FastAPI()
 
 
 # Loading model
-my_model = keras.models.load_model("model.keras")
+my_model = keras.models.load_model("./model.keras")
 
 
 

@@ -7,10 +7,7 @@
     },
     {
       "src": "alzheimer_FastAPI/app.py",
-      "use": "@vercel/python",
-      "config": {
-        "runtime": "python3.11"
-      }
+      "use": "@vercel/python"
     },
     {
       "src": "react_base/package.json",
