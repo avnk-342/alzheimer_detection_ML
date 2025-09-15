@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "express/package.json",
+      "src": "express/app.js",
       "use": "@vercel/node"
     },
     {
@@ -20,7 +20,7 @@
     },
     {
       "source": "/(.*)",
-      "destination": "react_base/build/index.html"
+      "destination": "/index.html"
     }
   ]
 }
