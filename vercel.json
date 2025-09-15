@@ -6,10 +6,6 @@
       "use": "@vercel/node"
     },
     {
-      "src": "alzheimer_FastAPI/app.py",
-      "use": "@vercel/python"
-    },
-    {
       "src": "react_base/package.json",
       "use": "@vercel/static-build",
       "config": {
@@ -21,10 +17,6 @@
     {
       "source": "/api/express/(.*)",
       "destination": "/express/app.js"
-    },
-    {
-      "source": "/api/fastapi/(.*)",
-      "destination": "/alzheimer_FastAPI/app.py"
     },
     {
       "source": "/(.*)",

@@ -3,6 +3,7 @@ const express = require('express');
 const multer = require('multer');
 const axios = require('axios');
 const FormData = require('form-data') ;
+require('dotenv').config();
 
 
 const app = express();
@@ -20,14 +21,8 @@ const upload = multer({storage: multer.memoryStorage()})
 
 app.post('/api/express/upload',upload.single('uploadImage'),async (req,res)=>{
     try {
-
-        //vercel required *****
-        const fastApiUrl = process.env.FASTAPI_URL; 
-        if (!fastApiUrl) {
-            throw new Error("FASTAPI_URL environment variable not set!");
-        }
-        /* ********* */
-
+        const fastApiUrl = process.env.API_URL;
+        
         if(!req.file){
             return res.status(400).send('No file Uploaded');
         }
@@ -40,7 +35,7 @@ app.post('/api/express/upload',upload.single('uploadImage'),async (req,res)=>{
 
         const apiResponse = await axios.post(
             // 'http://localhost:8000', 
-            fastApiUrl, // vercel requirement
+            fastApiUrl,
             formData, 
             { 
                 headers: {
