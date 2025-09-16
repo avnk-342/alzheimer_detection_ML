@@ -2,25 +2,12 @@
   "version": 2,
   "builds": [
     {
-      "src": "express/app.js",
-      "use": "@vercel/node"
-    },
-    {
       "src": "react_base/package.json",
       "use": "@vercel/static-build",
-      "config": {
-        "distDir": "build"
-      }
+      "config": { "distDir": "build" }
     }
   ],
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/express/app.js"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.js"
-    }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
