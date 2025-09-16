@@ -26,7 +26,7 @@ const Hero = () => {
     axios({
       method: 'post',
       // url: 'http://localhost:8080',
-      url: '/api/express/upload', //vercel required path
+      url: '/api/upload', //vercel required path
       data: formData,
       headers: {
         'Accept' : 'application/json',

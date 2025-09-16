@@ -19,7 +19,7 @@ const upload = multer({storage: multer.memoryStorage()})
 
 
 
-app.post('/api/express/upload',upload.single('uploadImage'),async (req,res)=>{
+app.post('/upload',upload.single('uploadImage'),async (req,res)=>{
     try {
         const fastApiUrl = process.env.API_URL;
         
