@@ -21,7 +21,7 @@ const Hero = () => {
   const handleAPI = () => {
     //API call
     const formData = new FormData()
-    formData.append('uploadImage', image )
+    formData.append('file', image )
 
     axios({
       method: 'post',
