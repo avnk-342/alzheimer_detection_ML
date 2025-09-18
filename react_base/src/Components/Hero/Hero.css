@@ -68,3 +68,13 @@
     font-size: 30px;
     font-weight: 500;
 }
+
+.input-div{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}

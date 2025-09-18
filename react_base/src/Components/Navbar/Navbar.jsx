@@ -23,7 +23,6 @@ const Navbar = () => {
     <div className = 'navbar'>
       
         <div className = "nav-logo">
-            <img src="" alt="" />
             <p>Alzheimer</p>
         </div>
         <ul className= "nav-menu">
@@ -33,10 +32,10 @@ const Navbar = () => {
            
         </ul>
 
-        <div className="nav-login-cart"> 
-        <Link to= '/login'><button>Login</button></Link>
+        {/* <div className="nav-login-cart"> 
+          <Link to= '/login'><button>Login</button></Link>
         
-        </div>
+        </div> */}
 
     </div>
   )
